@@ -1,6 +1,6 @@
 struct Todo {
     name: String,
-    isComplete: bool,
+    is_complete: bool,
 }
 
 pub struct TodoController {
@@ -14,7 +14,7 @@ impl TodoController {
         }
     }
 
-    pub fn printTodos(&mut self){
+    pub fn print_todos(&mut self){
         println!("-------------------------------");
         println!("--======--+===+--+==+--+===+---");
         println!("----||----||-||--||--+-||-||---");
@@ -22,26 +22,26 @@ impl TodoController {
         println!("----||----+===+--+==+--+===+---");
         println!("-------------------------------");
         for (index, item) in self.todo_list.iter().enumerate() {
-            let checked = if item.isComplete { String::from("[x]") } else { String::from("[]")};
+            let checked = if item.is_complete { String::from("[x]") } else { String::from("[]")};
             println!("{}), {}: {}", index, item.name, checked);
         }
     }
 
-    pub fn addTodo(&mut self, todoName: &str){
+    pub fn add_todo(&mut self, todo_name: &str){
         self.todo_list.push(Todo {
-            name: todoName.to_string(),
-            isComplete: false
+            name: todo_name.to_string(),
+            is_complete: false
         });
     }
 
-    pub fn completeTodo(&mut self, index: usize){
+    pub fn complete_todo(&mut self, index: usize){
         println!("Nice one dude!");
         if let Some(todo) = self.todo_list.get_mut(index) {
-            todo.isComplete = true;
+            todo.is_complete = true;
         }
     }
 
-    pub fn removeTodo(&mut self, index: usize){
+    pub fn remove_todo(&mut self, index: usize){
         self.todo_list.remove(index);
         println!("Todo deleted!");
     }
